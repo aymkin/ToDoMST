@@ -17,6 +17,7 @@ import { initFonts } from "./theme/fonts" // expo
 import * as storage from "./utils/storage"
 import { AppNavigator, useNavigationPersistence } from "./navigators"
 import { RootStore, RootStoreProvider, setupRootStore } from "./models"
+import { Provider as PaperProvider } from 'react-native-paper';
 import { ToggleStorybook } from "../storybook/toggle-storybook"
 import { ErrorBoundary } from "./screens/error/error-boundary"
 
@@ -59,10 +60,12 @@ function App() {
       <RootStoreProvider value={rootStore}>
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
           <ErrorBoundary catchErrors={"always"}>
-            <AppNavigator
-              initialState={initialNavigationState}
-              onStateChange={onNavigationStateChange}
-            />
+            <PaperProvider>
+              <AppNavigator
+                initialState={initialNavigationState}
+                onStateChange={onNavigationStateChange}
+              />
+            </PaperProvider>
           </ErrorBoundary>
         </SafeAreaProvider>
       </RootStoreProvider>
